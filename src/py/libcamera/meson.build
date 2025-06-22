@@ -73,7 +73,7 @@ pycamera_args = [
     '-DPYBIND11_USE_SMART_HOLDER_AS_DEFAULT',
     '-DLIBCAMERA_BASE_PRIVATE',
 ]
-subdir_done()
+# subdir_done()
 
 destdir = get_option('libdir') / ('python' + py3_dep.version()) / 'site-packages' / 'libcamera'
 
