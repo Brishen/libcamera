@@ -75,7 +75,8 @@ pycamera_args = [
 ]
 # subdir_done()
 
-# destdir = get_option('libdir') / ('python' + py3_dep.version()) / 'site-packages' / 'libcamera'
+#destdir = get_option('libdir') / ('python' + py3_dep.version()) / 'site-packages' / 'libcamera'
+destdir = get_option('libdir')
 
 pycamera = shared_module('_libcamera',
                          pycamera_sources,
