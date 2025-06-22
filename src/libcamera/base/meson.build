@@ -63,6 +63,8 @@ libcamera_base_lib = shared_library('libcamera-base',
                                     name_prefix : '',
                                     install : true,
                                     cpp_args : libcamera_base_args,
+                                    install_tag    : 'python-runtime',
+                                    install_rpath : '$ORIGIN',
                                     include_directories : libcamera_includes,
                                     dependencies : libcamera_base_deps)
 
