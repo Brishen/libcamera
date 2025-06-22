@@ -211,6 +211,8 @@ libcamera = shared_library('libcamera',
                            install : true,
                            include_directories : includes,
                            build_rpath : '/',
+                           install_dir    : pkgdir,
+                           install_tag    : 'python-runtime',
                            install_rpath : '$ORIGIN',
                            dependencies : libcamera_deps)
 
