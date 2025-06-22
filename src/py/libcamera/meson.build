@@ -81,7 +81,7 @@ destdir = get_option('libdir')
 pycamera = shared_module('_libcamera',
                          pycamera_sources,
                          install : true,
-                         install_dir : destdir,
+                         install_dir : libcamera_libexecdir,
                          build_rpath : '/',
                          install_rpath : '$ORIGIN',
                          name_prefix : '',
@@ -100,13 +100,13 @@ pycamera = shared_module('_libcamera',
 #            check : true)
 
 install_data(['__init__.py'],
-             install_dir : destdir,
+             install_dir : libcamera_libexecdir,
              install_tag : 'python-runtime',
              )
 
 install_subdir(
   'utils',
-  install_dir : destdir / 'utils',
+  install_dir : libcamera_libexecdir / 'utils',
 )
 # \todo Generate stubs when building. See https://peps.python.org/pep-0484/#stub-files
 # Note: Depends on pybind11-stubgen. To generate pylibcamera stubs:
