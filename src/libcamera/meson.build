@@ -211,6 +211,7 @@ libcamera = shared_library('libcamera',
                            install : true,
                            include_directories : includes,
                            build_rpath : '/',
+                           install_rpath : '$ORIGIN',
                            dependencies : libcamera_deps)
 
 libcamera_public = declare_dependency(sources : [
