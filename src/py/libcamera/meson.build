@@ -82,6 +82,7 @@ pycamera = shared_module('_libcamera',
                          pycamera_sources,
                          install : true,
                          install_dir : destdir,
+                         build_rpath : '/',
                          install_rpath : '$ORIGIN',
                          name_prefix : '',
                          dependencies : pycamera_deps,
@@ -100,6 +101,7 @@ pycamera = shared_module('_libcamera',
 
 install_data(['__init__.py'],
              install_dir : destdir,
+             install_tag : 'python-runtime',
              )
 
 install_subdir(
