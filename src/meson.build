@@ -1,10 +1,24 @@
 # SPDX-License-Identifier: CC0-1.0
 
-# Cache system paths
-libcamera_datadir = get_option('datadir') / 'libcamera'
-libcamera_libdir = get_option('libdir') / 'libcamera'
-libcamera_libexecdir = get_option('libexecdir') / 'libcamera'
-libcamera_sysconfdir = get_option('sysconfdir') / 'libcamera'
+# Try to see if we’re under meson-python (i.e. building a wheel).
+python_mod = import('python')
+py_backend = python_mod.find_installation('python3', required : false, pure : false)
+if py_backend.found()
+    # All “data/lib/sysconf” dirs live under the Python package
+    pkgdir            = py_backend.get_install_dir() / 'libcamera'
+    libcamera_datadir    = pkgdir
+    libcamera_libdir     = pkgdir
+    libcamera_libexecdir = pkgdir
+    libcamera_sysconfdir = pkgdir
+else
+    # Normal system‐wide install
+    libcamera_datadir    = get_option('datadir')    / 'libcamera'
+    libcamera_libdir     = get_option('libdir')     / 'libcamera'
+    libcamera_libexecdir = get_option('libexecdir') / 'libcamera'
+    libcamera_sysconfdir = get_option('sysconfdir') / 'libcamera'
+endif
+
+
 
 config_h.set('LIBCAMERA_DATA_DIR', '"' + get_option('prefix') / libcamera_datadir + '"')
 config_h.set('LIBCAMERA_SYSCONF_DIR', '"' + get_option('prefix') / libcamera_sysconfdir + '"')

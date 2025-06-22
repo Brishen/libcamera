@@ -49,12 +49,22 @@ if cc.get_id() == 'clang' and glib_dep.version().version_compare('<2.63.0')
     libcamera_gst_cpp_args += ['-Wno-unused-function']
 endif
 
+python = import('python')
+py = python.find_installation('python3', required : false, pure : false)
+
+if py.found()
+    # purelib might be e.g. /usr/lib/python3.10/site-packages
+    real_lib = py.get_install_dir()
+else
+    real_lib = get_option('libdir')
+endif
+
 libcamera_gst = shared_library('gstlibcamera',
     libcamera_gst_sources,
     cpp_args : libcamera_gst_cpp_args,
     dependencies : [libcamera_public, gstvideo_dep, gstallocator_dep],
     install : true,
-    install_dir : '@0@/gstreamer-1.0'.format(get_option('libdir')),
+    install_dir : real_lib / '..' / 'gstreamer-1.0',
 )
 
 # Make the plugin visible to GStreamer inside meson devenv.
