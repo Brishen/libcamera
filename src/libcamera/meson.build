@@ -196,7 +196,8 @@ libcamera_deps += [
 # The build_rpath is stripped at install time by meson, so we determine at
 # runtime if the library is running from an installed location by checking
 # for the presence or abscence of the dynamic tag.
-
+python = import('python')
+py = python.find_installation('python3', required : false, pure : false)
 if py.found()
     # pkgdir → /…/site-packages/libcamera
     pkgdir = py.get_install_dir() / 'libcamera'
