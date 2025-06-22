@@ -197,6 +197,14 @@ libcamera_deps += [
 # runtime if the library is running from an installed location by checking
 # for the presence or abscence of the dynamic tag.
 
+if py.found()
+    # pkgdir → /…/site-packages/libcamera
+    pkgdir = py.get_install_dir() / 'libcamera'
+else
+    # normal system install fallback
+    pkgdir = get_option('libexecdir') / 'libcamera'
+endif
+
 libcamera = shared_library('libcamera',
                            [
                                libcamera_public_headers,
